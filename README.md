@@ -9,7 +9,14 @@ sudo apt upgrade -y
 ```sh
 sudo apt install vim
 ```
-3. change keyboard layout, switch `Home` button to `PgUp` button and `End` button to `PgDn` button to optimize my typing comfort
+3. Set case insensitive tab completion off
+```sh
+vi .inputrc
+```
+```sh
+set completion-ignore-case off
+```
+4. change keyboard layout, switch `Home` button to `PgUp` button and `End` button to `PgDn` button to optimize my typing comfort
 ```sh
 sudo vi /usr/share/X11/xkb/keycodes/evdev
 ```
@@ -24,7 +31,7 @@ sudo vi /usr/share/X11/xkb/keycodes/evdev
 <END> = 117;
 <PGDN> = 115;
 ```
-4. install tlp to optimize laptop battery life
+5. install tlp to optimize laptop battery life
 ```sh
 sudo apt update
 sudo apt install tlp tlp-rdw acpi-call-dkms
@@ -44,15 +51,15 @@ STOP_CHARGE_THRESH_BAT1=80
 sudo tlp start
 sudo tlp-stat
 ```
-5. install chrome, telegram, etc
-5. install [Sublime Text](https://sublimetext.com) and [Sublime Merge](https://sublimemerge.com)
+6. install chrome, telegram, etc
+7. install [Sublime Text](https://sublimetext.com) and [Sublime Merge](https://sublimemerge.com)
 ```sh
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 sudo apt update
 sudo apt install sublime-text sublime-merge
 ```
-5. install go
+8. install go
 ```sh
 sudo rm -rf /usr/local/go
 mkdir -p $HOME/dev/deps/gopath
@@ -65,30 +72,36 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/dev/deps/gopath
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 ```
-6. install nodejs
+9. install nodejs
 ```sh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 nvm install 22
 node -v # should print `v22.12.0`
 npm -v # should print `10.9.0`
 ```
-7. install php
+10. install php
 ```sh
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 sudo apt install php8.4 ca-certificates apt-transport-https software-properties-common
 php -v # should print `PHP 8.4.1`
 ```
-8. install postgresql
-9. install mysql
+11. install postgresql
+12. install mysql
 ```sh
 wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.33-1_all.deb
-sudo dpkg -i mysql-apt-config_0.8.33-1_all.deb
+sudo apt install ./mysql-apt-config_0.8.33-1_all.deb
 sudo apt update
 sudo apt install mysql-server
 ```
-10. install dbeaver
-11. install docker
+13. install dbeaver
+```
+sudo  wget -O /usr/share/keyrings/dbeaver.gpg.key https://dbeaver.io/debs/dbeaver.gpg.key
+echo "deb [signed-by=/usr/share/keyrings/dbeaver.gpg.key] https://dbeaver.io/debs/dbeaver-ce /" | sudo tee /etc/apt/sources.list.d/dbeaver.list
+sudo apt update
+sudo apt install dbeaver-ce
+```
+14. install docker
 ```sh
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 sudo apt update
