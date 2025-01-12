@@ -1,6 +1,6 @@
 Thinkpad T480 setup for my daily use
 
-1. install [Zorin OS](https://zorin.com/os/download) then update all incuded software to the latest version
+1. install [Linux Mint](https://linuxmint.com) then update all incuded software to the latest version
 ```sh
 sudo apt update
 sudo apt upgrade -y
@@ -9,14 +9,7 @@ sudo apt upgrade -y
 ```sh
 sudo apt install vim
 ```
-3. Set case insensitive tab completion off
-```sh
-vi .inputrc
-```
-```sh
-set completion-ignore-case off
-```
-4. change keyboard layout, switch `Home` button to `PgUp` button and `End` button to `PgDn` button to optimize my typing comfort
+3. change keyboard layout, switch `Home` button to `PgUp` button and `End` button to `PgDn` button to optimize my typing comfort
 ```sh
 sudo vi /usr/share/X11/xkb/keycodes/evdev
 ```
@@ -31,7 +24,7 @@ sudo vi /usr/share/X11/xkb/keycodes/evdev
 <END> = 117;
 <PGDN> = 115;
 ```
-5. install tlp to optimize laptop battery life
+4. install tlp to optimize laptop battery life
 ```sh
 sudo apt update
 sudo apt install tlp tlp-rdw acpi-call-dkms
@@ -51,6 +44,7 @@ STOP_CHARGE_THRESH_BAT1=80
 sudo tlp start
 sudo tlp-stat
 ```
+5. install [Orchis Theme](https://github.com/vinceliuice/Orchis-theme)
 6. install chrome, telegram, etc
 7. install [Sublime Text](https://sublimetext.com) and [Sublime Merge](https://sublimemerge.com)
 ```sh
@@ -109,9 +103,24 @@ sudo apt install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo usermod -aG docker $USER
 newgrp docker
+```
+15. Install postman
+```sh
+sudo rm -rf /opt/Postman
+tar -C /tmp/ -xzf <(curl -L https://dl.pstmn.io/download/latest/linux64) && sudo mv /tmp/Postman /opt/
+sudo tee -a /usr/share/applications/postman.desktop << END
+[Desktop Entry]
+Encoding=UTF-8
+Name=Postman
+Exec=/opt/Postman/Postman
+Icon=/opt/Postman/app/resources/app/assets/icon.png
+Terminal=false
+Type=Application
+Categories=Development;
+END
 ```
