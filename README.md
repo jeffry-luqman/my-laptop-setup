@@ -81,12 +81,11 @@ sudo apt install php8.4 ca-certificates apt-transport-https software-properties-
 php -v # should print `PHP 8.4.1`
 ```
 11. install postgresql
-12. install mysql
+12. install mariadb
 ```sh
-wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.33-1_all.deb
-sudo apt install ./mysql-apt-config_0.8.33-1_all.deb
+curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash -s -- --os-type=ubuntu --os-version=noble
 sudo apt update
-sudo apt install mysql-server
+sudo apt install mariadb-server mariadb-client mariadb-backup
 ```
 13. install dbeaver
 ```
